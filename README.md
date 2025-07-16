@@ -1,8 +1,90 @@
-# dodgeball
+# 🏐 Dodgeball
 
-Dodgeball
+A simulation of a strategic version of the children's game *Dodgeball*, where players pass the ball in precise compass directions until the game ends.
 
-Kids are playing a game called Dodgeball. The game is played on a large playing field, each player standing in a different spot with integer coordinates.
-The game starts with one player receiving a ball from one of the main eight compass directions: N, NE, E, SE, S, SW, W, NW (listed in clockwise order).
-Whenever a player gets the ball, he or she rotates clockwise in multiples of 45 degrees (starting with the next direction from which he or she has just received the ball), until they find another player standing in that exact direction. The player then throws the ball and leaves the field. If there are multiple players in the same direction, the ball always goes to the nearest one. Next player continues with this process and so the game goes on, until the player that received the ball doesn't have anybody else to throw the ball to.
-The picture below shows how the game could go for similar starting positions of players but different starting players and directions.
+---
+
+## 📘 Problem Description
+
+Kids are playing a game called **Dodgeball**. The game is played on a large field, with each player standing at a unique position defined by integer coordinates.
+
+- The game begins with one player receiving a ball from one of the **eight compass directions**:  
+  `N`, `NE`, `E`, `SE`, `S`, `SW`, `W`, `NW` (listed clockwise).
+  
+- Upon receiving the ball, a player **rotates clockwise in 45° increments**, starting **from the next direction** after the one they received the ball from.
+
+- The first player in a visible direction is passed the ball. The thrower **leaves the field**.
+
+- If multiple players are in the same direction, the ball is passed to the **nearest** one.
+
+- The game ends when the current player has **no valid direction** to throw the ball to.
+
+---
+
+## 🎯 Objective
+
+For each test case:
+
+- Determine how many **throws** occur before the game ends (the initial pass does **not** count).
+- Determine which **player was the last to receive** the ball.
+
+---
+
+## 🧾 Input Format
+
+- The first line contains the number of test cases, `T` (1 ≤ T ≤ 100).
+
+- For each test case:
+  - An integer `N` (2 ≤ N ≤ 1000): the number of players.
+  - Next `N` lines each contain two integers `Xp` and `Yp` (−10⁵ ≤ Xp, Yp ≤ 10⁵): coordinates of the `p`-th player.
+  - A line with string `D`: the direction (`N`, `NE`, `E`, `SE`, `S`, `SW`, `W`, `NW`) from which the first player receives the ball.
+  - An integer `S` (1 ≤ S ≤ N): index (1-based) of the starting player.
+
+---
+
+## 📤 Output Format
+
+For each test case, output **one line** with two integers:
+
+- The **number of throws** made (excluding the first reception),
+- The **index of the last player** who received the ball.
+
+---
+
+## 📎 Example
+
+### ✅ Input
+```
+
+8
+-10 -10
+-10 10
+0 -10
+0 10
+10 -10
+10 10
+-9 -10
+-9 0
+NW
+5
+
+```
+
+### 💡 Output
+```
+
+4 5
+
+```
+
+> In this test case, the ball travels between players:  
+> `5 → 6 → 1 → 7 → 8`.  
+> Total of **4 throws**, with **player 5** ending up last.
+
+---
+
+## 🧠 Notes
+
+- The vector `(1, 1)` represents direction **NE**.
+- Player indices are **1-based**.
+- Once a player throws the ball, they are **removed from the field** and are no longer considered in the rotation logic.
